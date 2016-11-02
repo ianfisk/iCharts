@@ -12,7 +12,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Settings from '../components/Settings';
 import VFRChart from '../model/VFRChart';
-import Scenes from './Scenes';
+import Scenes from '../constants/Scenes';
 import SideMenu from './SideMenu';
 import { getSavedCharts } from '../utility/StorageUtility';
 
@@ -53,9 +53,9 @@ class AppContainer extends Component {
     });
   }
 
-  handleViewPress(){
+  handleViewChart(){
     this.setState({
-      route: Scenes.SETTINGS,
+      route: Scenes.CHART_VIEW,
     });
   }
 
@@ -80,20 +80,24 @@ class AppContainer extends Component {
         case Scenes.HOME:
           return <VFRChartsList
                     onFavorited={(chartId) => this.handleFavPress(chartId)}
-                    onChartPressed={() => this.handleViewPress()}
+                    onChartPressed={() => this.handleViewChart()}
                     vfrChartsToShow={this.state.vfrChartsToShow}
                   />;
         case Scenes.FAVORITES:
           return <VFRChartsList
                     onFavorited={(chartId) => this.handleFavPress(chartId)}
-                    onChartPressed={() => this.handleViewPress()}
+                    onChartPressed={() => this.handleViewChart()}
                     vfrChartsToShow={this.state.savedVfrCharts.filter((chart) => { return chart.isFavorited; }) }
                   />;
         case Scenes.SETTINGS:
           return <Settings />;
         default:
           console.log("Unkown route: ", this.state.route);
-          return <VFRChartsList onChartPress={(chartId) => this.handleFavPress(chartId)} vfrChartsToShow={this.state.savedVfrCharts}/>;
+          return <VFRChartsList
+                    onFavorited={(chartId) => this.handleFavPress(chartId)}
+                    onChartPressed={(chartId) => this.handleFavPress(chartId)}
+                    vfrChartsToShow={this.state.savedVfrCharts}
+                 />;
       }
   }
 

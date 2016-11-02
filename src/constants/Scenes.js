@@ -1,5 +1,6 @@
 export default Scenes = {
   HOME: 'home',
   FAVORITES: 'favorites',
-  SETTINGS: 'settings'
+  SETTINGS: 'settings',
+  CHART_VIEW: 'chart'
 }

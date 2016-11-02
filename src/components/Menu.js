@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Border from './Border';
 import MenuCell from './MenuCell';
-import Scenes from '../containers/Scenes';
+import Scenes from '../constants/Scenes';
 import Colors from '../styles/Colors';
 
 const Menu = (props) => {
